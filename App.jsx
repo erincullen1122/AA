@@ -1,28 +1,20 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-const TIMEZONE = 'America/Los_Angeles';
-const MEETING_WEEKDAY = 3; // Wednesday (Sun=0)
-const MEETING_HOUR = 19;
-const MEETING_MINUTE = 0;
+
 
 // ── Template values: update these for your meeting ───────────────────────
 const WORKSHOP_NAME = 'Huggers Womens AA Meeting';
-const HOST_LINE = 'Hosted Women of Huggers';
+const HOST_LINE = 'Join us!';
 const SCHEDULE_LINE = 'Every Tuesday & Thursday at 6:30 PM Pacific';
 const START_DATE_LINE = 'Set your start date';
 const COMMITMENT_LINE = 'Open-ended';
 
-const ZOOM_ID = '1234567890';
-const ZOOM_PASSCODE = 'CHANGE_ME';
+const ZOOM_ID = '81858307289';
+const ZOOM_PASSCODE = '411108';
 const ZOOM_LINK = `https://us02web.zoom.us/j/${ZOOM_ID}?pwd=${encodeURIComponent(ZOOM_PASSCODE)}`;
-const WORKBOOK_LINK = 'https://example.com/workbook-link';
+const WORKBOOK_LINK = 'https://www.aa.org/daily-reflectionsps://example.com/workbook-link';
 
-const CONTACT_1_NAME = 'Host 1';
-const CONTACT_1_PHONE_DISPLAY = '(000) 000-0000';
-const CONTACT_1_PHONE_TEL = '+10000000000';
-const CONTACT_2_NAME = 'Host 2';
-const CONTACT_2_PHONE_DISPLAY = '(000) 000-0000';
-const CONTACT_2_PHONE_TEL = '+10000000000';
+
 
 const CALENDAR_TITLE = WORKSHOP_NAME;
 const CALENDAR_DETAILS = `${HOST_LINE}\nZoom ID: ${ZOOM_ID}\nPasscode: ${ZOOM_PASSCODE}\nJoin: ${ZOOM_LINK}`;
@@ -139,7 +131,7 @@ function App() {
         <div className="hero-overlay">
           <div className="hero-content">
             <div className="hero-glass">
-              <p className="eyebrow">Tuesday & Thursday Night Meeting</p>
+              <p className="eyebrow">Tuesday & Thursday</p>
               <h1>{WORKSHOP_NAME}</h1>
               <p className="subtitle">{HOST_LINE} · {SCHEDULE_LINE}</p>
 
