@@ -17,6 +17,8 @@ const defaults = {
   zoomPasscode: '411108',
   workbookLink: 'https://www.aa.org/daily-reflections',
   dailyReflectionsUrl: 'https://www.aa.org/daily-reflections',
+  dailyReflectionImagePrimary: '/flyer.jpg',
+  dailyReflectionImageSecondary: '/social-preview.jpg',
   calendarStartUtc: '20260305T030000Z',
   calendarEndUtc: '20260305T043000Z',
   calendarRrule: 'RRULE:FREQ=WEEKLY;BYDAY=WE',
@@ -83,6 +85,8 @@ const ZOOM_LINK = `https://us02web.zoom.us/j/${ZOOM_ID}?pwd=${encodeURIComponent
 const WORKBOOK_LINK = safeContent.workbookLink;
 const DAILY_REFLECTIONS_URL = safeContent.dailyReflectionsUrl;
 const DAILY_REFLECTIONS_EMBED_HTML = (safeContent.dailyReflectionsEmbedHtml ?? '').trim();
+const DAILY_REFLECTION_IMAGE_PRIMARY = safeContent.dailyReflectionImagePrimary;
+const DAILY_REFLECTION_IMAGE_SECONDARY = safeContent.dailyReflectionImageSecondary;
 
 function formatMeetingTime(hour24, minute) {
   const safeHour = Number.isFinite(hour24) ? Math.max(0, Math.min(23, hour24)) : 18;
@@ -383,26 +387,49 @@ function App() {
         <section className="card week-update">
           <h2>Daily Reflection</h2>
           {DAILY_REFLECTIONS_EMBED_HTML ? (
-            <div className="daily-reflection-embed" dangerouslySetInnerHTML={{ __html: DAILY_REFLECTIONS_EMBED_HTML }} />
+            <div className="daily-reflection-layout">
+              <div className="daily-reflection-box">
+                <div className="daily-reflection-embed" dangerouslySetInnerHTML={{ __html: DAILY_REFLECTIONS_EMBED_HTML }} />
+              </div>
+              <div className="daily-reflection-media-grid" aria-label="Reflection image holders">
+                <figure className="daily-reflection-frame">
+                  <img src={DAILY_REFLECTION_IMAGE_PRIMARY} alt="Daily reflection image holder 1" loading="lazy" />
+                </figure>
+                <figure className="daily-reflection-frame">
+                  <img src={DAILY_REFLECTION_IMAGE_SECONDARY} alt="Daily reflection image holder 2" loading="lazy" />
+                </figure>
+              </div>
+            </div>
           ) : reflectionLoading ? (
             <p>Loading today&apos;s reflection...</p>
           ) : reflectionData?.fullText ? (
-            <div className="daily-reflection-text">
-              {reflectionData?.title ? <h3>{reflectionData.title}</h3> : null}
-              {reflectionData?.dateLabel ? <p className="daily-reflection-date">{reflectionData.dateLabel}</p> : null}
-              <div className="daily-reflection-body">
-                {reflectionData.fullText
-                  .split('\n\n')
-                  .filter(Boolean)
-                  .map((paragraph, index) => (
-                    <p key={`${paragraph.slice(0, 20)}-${index}`}>{paragraph}</p>
-                  ))}
+            <div className="daily-reflection-layout">
+              <div className="daily-reflection-box daily-reflection-text">
+                {reflectionData?.title ? <h3>{reflectionData.title}</h3> : null}
+                {reflectionData?.dateLabel ? <p className="daily-reflection-date">{reflectionData.dateLabel}</p> : null}
+                <div className="daily-reflection-body">
+                  {reflectionData.fullText
+                    .split('\n\n')
+                    .filter(Boolean)
+                    .map((paragraph, index) => (
+                      <p key={`${paragraph.slice(0, 20)}-${index}`}>{paragraph}</p>
+                    ))}
+                </div>
+                <p style={{ marginTop: '0.65rem' }}>
+                  <a href={DAILY_REFLECTIONS_URL} target="_blank" rel="noreferrer">
+                    View on AA.org
+                  </a>
+                </p>
               </div>
-              <p style={{ marginTop: '0.65rem' }}>
-                <a href={DAILY_REFLECTIONS_URL} target="_blank" rel="noreferrer">
-                  View on AA.org
-                </a>
-              </p>
+
+              <div className="daily-reflection-media-grid" aria-label="Reflection image holders">
+                <figure className="daily-reflection-frame">
+                  <img src={DAILY_REFLECTION_IMAGE_PRIMARY} alt="Daily reflection image holder 1" loading="lazy" />
+                </figure>
+                <figure className="daily-reflection-frame">
+                  <img src={DAILY_REFLECTION_IMAGE_SECONDARY} alt="Daily reflection image holder 2" loading="lazy" />
+                </figure>
+              </div>
             </div>
           ) : (
             <>
