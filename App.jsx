@@ -6,7 +6,7 @@ const MEETING_HOUR = 19;
 const MEETING_MINUTE = 0;
 
 // ── Template values: update these for your meeting ───────────────────────
-const WORKSHOP_NAME = 'Your AA Workshop Name';
+const WORKSHOP_NAME = "Huggers Women's Meeting";
 const HOST_LINE = 'Hosted by Host 1 & Host 2';
 const SCHEDULE_LINE = 'Every Wednesday at 7:00 PM Pacific';
 const START_DATE_LINE = 'Set your start date';
