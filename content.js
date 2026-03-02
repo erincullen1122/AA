@@ -2,7 +2,7 @@ export const content = {
   // ===== TEXT YOU'LL CHANGE MOST OFTEN =====
   workshopName: 'Huggers Womens AA Meeting',
   hostLine: 'Join us!',
-  scheduleLine: 'Every Tuesday & Thursday at 6:30 PM Pacific',
+  scheduleLine: 'Every Tuesday & Thursday 6:30 PM - 7:30 PM Pacific',
   startDateLine: 'Set your start date',
   commitmentLine: 'Open-ended',
 
@@ -28,12 +28,7 @@ export const content = {
   calendarRrule: 'RRULE:FREQ=WEEKLY;BYDAY=TU,TH',
 
   // ===== CONTACTS =====
-  contact1Name: 'Contact 1',
-  contact1PhoneDisplay: '(000) 000-0000',
-  contact1PhoneTel: '+10000000000',
-  contact2Name: 'Contact 2',
-  contact2PhoneDisplay: '(000) 000-0000',
-  contact2PhoneTel: '+10000000001',
+
 
   // ===== IMAGE =====
   // Put your image in /public and point to it like '/my-banner.jpg'
