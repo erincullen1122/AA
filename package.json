@@ -5,13 +5,16 @@
   "type": "module",
   "scripts": {
     "sync:banner": "mkdir -p public && cp -f banner.jpg public/banner.jpg",
+    "checkpoint": "bash scripts/checkpoint.sh",
+    "checkpoint:watch": "bash scripts/checkpoint-watch.sh",
+    "checkpoint:watch:10": "bash scripts/checkpoint-watch.sh 10",
     "predev": "npm run sync:banner",
     "prebuild": "npm run sync:banner",
     "dev": "VITE_BUILD_TS=$(date +%s) vite",
     "build": "VITE_BUILD_TS=$(date +%s) vite build",
     "preview": "vite preview",
     "check": "npm run build",
-    "deploy:prod": "npm run check && npx vercel --prod --yes --scope anniehall16-1319s-projects"
+    "deploy:prod": "npm run checkpoint && npm run check && npx vercel --prod --yes --scope anniehall16-1319s-projects"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",

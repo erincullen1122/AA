@@ -53,7 +53,23 @@ Banner updates are cache-busted automatically on every `build`/`deploy`, so you 
 npm run deploy:prod
 ```
 
-`deploy:prod` always runs a build check first, so broken edits are caught before publishing.
+`deploy:prod` now runs an automatic Git checkpoint first, then a build check, then deploys.
+
+## Auto-checkpoint safety (recommended)
+
+Create a manual checkpoint anytime:
+
+```bash
+npm run checkpoint
+```
+
+Run automatic checkpoints every 10 minutes while you edit:
+
+```bash
+npm run checkpoint:watch:10
+```
+
+This makes a commit and pushes only when there are real changes.
 
 ## Notes
 
