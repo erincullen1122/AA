@@ -12,7 +12,7 @@ const COMMITMENT_LINE = 'Open-ended';
 const ZOOM_ID = '81858307289';
 const ZOOM_PASSCODE = '411108';
 const ZOOM_LINK = `https://us02web.zoom.us/j/${ZOOM_ID}?pwd=${encodeURIComponent(ZOOM_PASSCODE)}`;
-const WORKBOOK_LINK = 'https://www.aa.org/daily-reflectionsps://example.com/workbook-link';
+const WORKBOOK_LINK = 'https://www.aa.org/daily-reflections';
 
 
 
@@ -162,7 +162,7 @@ function App() {
                   </div>
                 </details>
                 <a className="btn btn-ghost" href={WORKBOOK_LINK} target="_blank" rel="noreferrer">
-                  Workbook
+                  Daily Reflections
                 </a>
               </div>
 
