@@ -183,6 +183,9 @@ function getNextMeetingCountdown(laNow, nowDate) {
 function App() {
   const [now, setNow] = useState(() => new Date());
   const [copied, setCopied] = useState(false);
+  const [reflectionLoading, setReflectionLoading] = useState(false);
+  const [reflectionError, setReflectionError] = useState('');
+  const [reflectionData, setReflectionData] = useState(null);
 
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 1000);
@@ -202,6 +205,46 @@ function App() {
     root.style.setProperty('--accent', theme.accent);
     root.style.setProperty('--accent-2', theme.accent2);
     root.style.setProperty('--border', theme.border);
+  }, []);
+
+  useEffect(() => {
+    if (DAILY_REFLECTIONS_EMBED_HTML) {
+      return;
+    }
+
+    let cancelled = false;
+
+    async function loadReflection() {
+      setReflectionLoading(true);
+      setReflectionError('');
+
+      try {
+        const response = await fetch('/api/daily-reflection');
+        if (!response.ok) {
+          throw new Error(`Request failed: ${response.status}`);
+        }
+
+        const payload = await response.json();
+
+        if (!cancelled) {
+          setReflectionData(payload);
+        }
+      } catch (error) {
+        if (!cancelled) {
+          setReflectionError('Unable to load today\'s reflection automatically.');
+        }
+      } finally {
+        if (!cancelled) {
+          setReflectionLoading(false);
+        }
+      }
+    }
+
+    loadReflection();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const laNow = useMemo(() => getLosAngelesParts(now), [now]);
@@ -341,12 +384,36 @@ function App() {
           <h2>Daily Reflection</h2>
           {DAILY_REFLECTIONS_EMBED_HTML ? (
             <div className="daily-reflection-embed" dangerouslySetInnerHTML={{ __html: DAILY_REFLECTIONS_EMBED_HTML }} />
+          ) : reflectionLoading ? (
+            <p>Loading today&apos;s reflection...</p>
+          ) : reflectionData?.fullText ? (
+            <div className="daily-reflection-text">
+              {reflectionData?.title ? <h3>{reflectionData.title}</h3> : null}
+              {reflectionData?.dateLabel ? <p className="daily-reflection-date">{reflectionData.dateLabel}</p> : null}
+              <div className="daily-reflection-body">
+                {reflectionData.fullText
+                  .split('\n\n')
+                  .filter(Boolean)
+                  .map((paragraph, index) => (
+                    <p key={`${paragraph.slice(0, 20)}-${index}`}>{paragraph}</p>
+                  ))}
+              </div>
+              <p style={{ marginTop: '0.65rem' }}>
+                <a href={DAILY_REFLECTIONS_URL} target="_blank" rel="noreferrer">
+                  View on AA.org
+                </a>
+              </p>
+            </div>
           ) : (
             <>
-              <p>
-                Paste embed code into <strong>dailyReflectionsEmbedHtml</strong> in content.js,
-                or open today&apos;s reflection directly:
-              </p>
+              {reflectionError ? (
+                <p>{reflectionError}</p>
+              ) : (
+                <p>
+                  Paste embed code into <strong>dailyReflectionsEmbedHtml</strong> in content.js,
+                  or open today&apos;s reflection directly:
+                </p>
+              )}
               <p style={{ marginTop: '0.65rem' }}>
                 <a href={DAILY_REFLECTIONS_URL} target="_blank" rel="noreferrer">
                   Open AA Daily Reflections

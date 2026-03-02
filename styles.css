@@ -342,6 +342,27 @@ body {
   border: 0;
 }
 
+.daily-reflection-text h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.daily-reflection-date {
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.daily-reflection-body {
+  margin-top: 0.7rem;
+}
+
+.daily-reflection-body p {
+  margin: 0 0 0.75rem;
+  color: #f2eadb;
+  line-height: 1.62;
+}
+
 @media (max-width: 760px) {
   .hero {
     min-height: 620px;
