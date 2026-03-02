@@ -22,12 +22,12 @@ const defaults = {
   calendarStartUtc: '20260305T030000Z',
   calendarEndUtc: '20260305T043000Z',
   calendarRrule: 'RRULE:FREQ=WEEKLY;BYDAY=WE',
-  contact1Name: 'Contact 1',
-  contact1PhoneDisplay: '(000) 000-0000',
-  contact1PhoneTel: '+10000000000',
-  contact2Name: 'Contact 2',
-  contact2PhoneDisplay: '(000) 000-0000',
-  contact2PhoneTel: '+10000000001',
+  contact1Name: '',
+  contact1PhoneDisplay: '',
+  contact1PhoneTel: '',
+  contact2Name: '',
+  contact2PhoneDisplay: '',
+  contact2PhoneTel: '',
   heroImage: '/banner.jpg',
   theme: {
     bg: '#20293a',
@@ -87,6 +87,10 @@ const DAILY_REFLECTIONS_URL = safeContent.dailyReflectionsUrl;
 const DAILY_REFLECTIONS_EMBED_HTML = (safeContent.dailyReflectionsEmbedHtml ?? '').trim();
 const DAILY_REFLECTION_IMAGE_PRIMARY = safeContent.dailyReflectionImagePrimary;
 const DAILY_REFLECTION_IMAGE_SECONDARY = safeContent.dailyReflectionImageSecondary;
+
+const HAS_CONTACT_1 = Boolean(CONTACT_1_NAME || CONTACT_1_PHONE_DISPLAY || CONTACT_1_PHONE_TEL);
+const HAS_CONTACT_2 = Boolean(CONTACT_2_NAME || CONTACT_2_PHONE_DISPLAY || CONTACT_2_PHONE_TEL);
+const HAS_ANY_CONTACT = HAS_CONTACT_1 || HAS_CONTACT_2;
 
 function formatMeetingTime(hour24, minute) {
   const safeHour = Number.isFinite(hour24) ? Math.max(0, Math.min(23, hour24)) : 18;
@@ -354,13 +358,15 @@ function App() {
             </article>
           </div>
 
-          <div className="detail-section">
-            <h3>Questions or Concerns</h3>
-            <div className="contact-lines">
-              <a href={`tel:${CONTACT_1_PHONE_TEL}`}>{CONTACT_1_NAME} · {CONTACT_1_PHONE_DISPLAY}</a>
-              <a href={`tel:${CONTACT_2_PHONE_TEL}`}>{CONTACT_2_NAME} · {CONTACT_2_PHONE_DISPLAY}</a>
+          {HAS_ANY_CONTACT ? (
+            <div className="detail-section">
+              <h3>Questions or Concerns</h3>
+              <div className="contact-lines">
+                {HAS_CONTACT_1 ? <a href={`tel:${CONTACT_1_PHONE_TEL}`}>{CONTACT_1_NAME} · {CONTACT_1_PHONE_DISPLAY}</a> : null}
+                {HAS_CONTACT_2 ? <a href={`tel:${CONTACT_2_PHONE_TEL}`}>{CONTACT_2_NAME} · {CONTACT_2_PHONE_DISPLAY}</a> : null}
+              </div>
             </div>
-          </div>
+          ) : null}
 
           <div className="detail-section">
             <h3>Workbook</h3>

@@ -28,7 +28,12 @@ export const content = {
   calendarRrule: 'RRULE:FREQ=WEEKLY;BYDAY=TU,TH',
 
   // ===== CONTACTS =====
- 
+  contact1Name: 'Contact 1',
+  contact1PhoneDisplay: '(000) 000-0000',
+  contact1PhoneTel: '+10000000000',
+  contact2Name: 'Contact 2',
+  contact2PhoneDisplay: '(000) 000-0000',
+  contact2PhoneTel: '+10000000001',
 
   // ===== IMAGE =====
   // Put your image in /public and point to it like '/my-banner.jpg'
