@@ -336,6 +336,12 @@ body {
   line-height: 1.45;
 }
 
+.daily-reflection-embed iframe {
+  width: 100%;
+  height: clamp(700px, 82vh, 980px);
+  border: 0;
+}
+
 @media (max-width: 760px) {
   .hero {
     min-height: 620px;
@@ -385,5 +391,9 @@ body {
 
   .detail-grid {
     grid-template-columns: 1fr;
+  }
+
+  .daily-reflection-embed iframe {
+    height: clamp(620px, 78vh, 860px);
   }
 }

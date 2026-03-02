@@ -75,3 +75,4 @@ This makes a commit and pushes only when there are real changes.
 
 - This is a front-end template only.
 - Safe to copy into another GitHub account and deploy independently.
+- Recovery + safety reference: [SESSION_RECOVERY_NOTES.md](./SESSION_RECOVERY_NOTES.md)

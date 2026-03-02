@@ -340,7 +340,7 @@ function App() {
         <section className="card week-update">
           <h2>Daily Reflection</h2>
           {DAILY_REFLECTIONS_EMBED_HTML ? (
-            <div dangerouslySetInnerHTML={{ __html: DAILY_REFLECTIONS_EMBED_HTML }} />
+            <div className="daily-reflection-embed" dangerouslySetInnerHTML={{ __html: DAILY_REFLECTIONS_EMBED_HTML }} />
           ) : (
             <>
               <p>
