@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "${AA_SKIP_AUTO_DEPLOY:-}" == "1" ]]; then
+  exit 0
+fi
+
+current_branch="$(git branch --show-current)"
+
+if [[ "${current_branch}" != "main" ]]; then
+  exit 0
+fi
+
+if ! git diff --quiet || ! git diff --cached --quiet || [[ -n "$(git ls-files --others --exclude-standard)" ]]; then
+  echo "⚠️ Skipping auto-deploy: working tree is not clean."
+  exit 0
+fi
+
+echo "🚀 Auto-deploying main to Vercel production..."
+deploy_output="$(npx vercel --prod --yes --scope anniehall16-1319s-projects)"
+echo "${deploy_output}"
+
+deploy_url="$(echo "${deploy_output}" | grep -Eo 'https://[^ ]+\.vercel\.app' | tail -n 1 || true)"
+
+if [[ -n "${deploy_url}" ]]; then
+  npx vercel alias set "${deploy_url}" huggerswomenaa.vercel.app --scope anniehall16-1319s-projects
+fi

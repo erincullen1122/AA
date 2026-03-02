@@ -6,8 +6,11 @@
   "scripts": {
     "sync:banner": "mkdir -p public && cp -f banner.jpg public/banner.jpg",
     "checkpoint": "bash scripts/checkpoint.sh",
+    "verify:sync": "bash scripts/verify-sync.sh",
     "checkpoint:watch": "bash scripts/checkpoint-watch.sh",
     "checkpoint:watch:10": "bash scripts/checkpoint-watch.sh 10",
+    "sync:auto:on": "bash scripts/install-hooks.sh",
+    "sync:auto:off": "git config --unset core.hooksPath || true",
     "predev": "npm run sync:banner",
     "prebuild": "npm run sync:banner",
     "dev": "VITE_BUILD_TS=$(date +%s) vite",

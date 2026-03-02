@@ -3,9 +3,8 @@ export const content = {
   workshopName: 'Huggers Womens AA Meeting',
   hostLine: 'Join us!',
   scheduleLine: 'Every Tuesday & Thursday 6:30 PM - 7:30 PM Pacific',
-  startDateLine: 'Set your start date',
-  commitmentLine: 'Open-ended',
-
+  startDateLine: 'Ongoing Weekly',
+  commitmentLine: 'Join us for a weekly meeting to share our experience, strength, and hope',
   // ===== TIME SETTINGS =====
   // meetingWeekday: Sunday=0, Monday=1, Tuesday=2 ... Saturday=6
   timezone: 'America/Los_Angeles',

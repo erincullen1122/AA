@@ -55,6 +55,25 @@ npm run deploy:prod
 
 `deploy:prod` now runs an automatic Git checkpoint first, then a build check, then deploys.
 
+## Keep everything synced automatically
+
+To keep local commits, GitHub, and Vercel production aligned every time you make changes:
+
+```bash
+npm run sync:auto:on
+```
+
+What this enables:
+- On every commit, Git pushes to `origin` automatically.
+- On every push from `main`, Vercel production deploy runs automatically.
+- The deployment is aliased to `https://huggerswomenaa.vercel.app`.
+
+Turn it off any time:
+
+```bash
+npm run sync:auto:off
+```
+
 ## Auto-checkpoint safety (recommended)
 
 Create a manual checkpoint anytime:
