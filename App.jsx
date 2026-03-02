@@ -8,7 +8,7 @@ const MEETING_MINUTE = 0;
 // ── Template values: update these for your meeting ───────────────────────
 const WORKSHOP_NAME = 'Huggers Women's Meeting';
 const HOST_LINE = 'Hosted by Host 1 & Host 2';
-const SCHEDULE_LINE = 'Every Wednesday at 7:00 PM Pacific';
+const SCHEDULE_LINE = 'Every Tuesday & Thursday at 6:30 PM Pacific';
 const START_DATE_LINE = 'Set your start date';
 const COMMITMENT_LINE = 'Open-ended';
 
@@ -139,7 +139,7 @@ function App() {
         <div className="hero-overlay">
           <div className="hero-content">
             <div className="hero-glass">
-              <p className="eyebrow">Tuesday & Thursday Night Meetings</p>
+              <p className="eyebrow">Tuesday & Thursday Night Meeting</p>
               <h1>{WORKSHOP_NAME}</h1>
               <p className="subtitle">{HOST_LINE} · {SCHEDULE_LINE}</p>
 
