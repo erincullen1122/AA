@@ -11,26 +11,38 @@ npm run dev
 
 ## Customize
 
-Update values in `src/App.jsx` under:
-
-```js
-// ── Template values: update these for your meeting ──
-```
+For text-only edits, update values in `content.js`.
 
 Key fields:
-- `WORKSHOP_NAME`
-- `HOST_LINE`
-- `SCHEDULE_LINE`
-- `START_DATE_LINE`
-- `COMMITMENT_LINE`
-- `ZOOM_ID`, `ZOOM_PASSCODE`
-- `WORKBOOK_LINK`
+- `workshopName`
+- `hostLine`
+- `scheduleLine`
+- `startDateLine`
+- `commitmentLine`
+- `zoomId`, `zoomPasscode`
+- `workbookLink`
 - contact names + phone numbers
+- `heroImage` (banner image path)
+- `theme` (site color values)
 
 Also update:
 - `public/workshop.ics` for recurring calendar rules and meeting metadata
-- `index.html` metadata (title/description/OG tags)
-- `public/banner.jpg` to your own image
+- `index.html` metadata (title/description)
+- files in `public/` when you want different images
+
+## Safe editing workflow
+
+1. Edit only `content.js` for wording changes.
+2. Save and verify the page refreshes.
+3. If something breaks, undo the last change in `content.js`.
+
+Avoid editing `App.jsx` unless you are changing layout/logic.
+
+## Common changes
+
+- Change tab title: edit `<title>` in `index.html`
+- Change hero image: put image in `public/` and set `heroImage` in `content.js`
+- Change colors: edit the `theme` object in `content.js`
 
 ## Deploy (Vercel)
 

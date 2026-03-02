@@ -1,27 +1,85 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { content } from './content';
 
 
 
-// ── Template values: update these for your meeting ───────────────────────
-const WORKSHOP_NAME = 'Huggers Womens AA Meeting';
-const HOST_LINE = 'Join us!';
-const SCHEDULE_LINE = 'Every Tuesday & Thursday at 6:30 PM Pacific';
-const START_DATE_LINE = 'Set your start date';
-const COMMITMENT_LINE = 'Open-ended';
+const defaults = {
+  workshopName: 'Huggers Womens AA Meeting',
+  hostLine: 'Join us!',
+  scheduleLine: 'Every Tuesday & Thursday at 6:30 PM Pacific',
+  startDateLine: 'Set your start date',
+  commitmentLine: 'Open-ended',
+  timezone: 'America/Los_Angeles',
+  meetingWeekday: 2,
+  meetingHour: 18,
+  meetingMinute: 30,
+  zoomId: '81858307289',
+  zoomPasscode: '411108',
+  workbookLink: 'https://www.aa.org/daily-reflections',
+  calendarStartUtc: '20260305T030000Z',
+  calendarEndUtc: '20260305T043000Z',
+  calendarRrule: 'RRULE:FREQ=WEEKLY;BYDAY=WE',
+  contact1Name: 'Contact 1',
+  contact1PhoneDisplay: '(000) 000-0000',
+  contact1PhoneTel: '+10000000000',
+  contact2Name: 'Contact 2',
+  contact2PhoneDisplay: '(000) 000-0000',
+  contact2PhoneTel: '+10000000001',
+  heroImage: '/banner.jpg',
+  theme: {
+    bg: '#20293a',
+    paper: '#efe5d2',
+    card: 'rgba(38, 53, 80, 0.78)',
+    card2: 'rgba(31, 45, 69, 0.72)',
+    text: '#f7f2e8',
+    muted: '#dfd2bc',
+    accent: '#74b6ff',
+    accent2: '#3f8ee2',
+    border: 'rgba(233, 219, 193, 0.26)',
+  },
+};
 
-const ZOOM_ID = '81858307289';
-const ZOOM_PASSCODE = '411108';
+const safeContent = {
+  ...defaults,
+  ...(content ?? {}),
+  theme: {
+    ...defaults.theme,
+    ...((content ?? {}).theme ?? {}),
+  },
+};
+
+const WORKSHOP_NAME = safeContent.workshopName;
+const HOST_LINE = safeContent.hostLine;
+const SCHEDULE_LINE = safeContent.scheduleLine;
+const START_DATE_LINE = safeContent.startDateLine;
+const COMMITMENT_LINE = safeContent.commitmentLine;
+
+const TIMEZONE = safeContent.timezone;
+const MEETING_WEEKDAY = Number(safeContent.meetingWeekday);
+const MEETING_HOUR = Number(safeContent.meetingHour);
+const MEETING_MINUTE = Number(safeContent.meetingMinute);
+
+const CONTACT_1_NAME = safeContent.contact1Name;
+const CONTACT_1_PHONE_DISPLAY = safeContent.contact1PhoneDisplay;
+const CONTACT_1_PHONE_TEL = safeContent.contact1PhoneTel;
+const CONTACT_2_NAME = safeContent.contact2Name;
+const CONTACT_2_PHONE_DISPLAY = safeContent.contact2PhoneDisplay;
+const CONTACT_2_PHONE_TEL = safeContent.contact2PhoneTel;
+const HERO_IMAGE = safeContent.heroImage;
+
+const ZOOM_ID = safeContent.zoomId;
+const ZOOM_PASSCODE = safeContent.zoomPasscode;
 const ZOOM_LINK = `https://us02web.zoom.us/j/${ZOOM_ID}?pwd=${encodeURIComponent(ZOOM_PASSCODE)}`;
-const WORKBOOK_LINK = 'https://www.aa.org/daily-reflections';
+const WORKBOOK_LINK = safeContent.workbookLink;
 
 
 
 const CALENDAR_TITLE = WORKSHOP_NAME;
 const CALENDAR_DETAILS = `${HOST_LINE}\nZoom ID: ${ZOOM_ID}\nPasscode: ${ZOOM_PASSCODE}\nJoin: ${ZOOM_LINK}`;
 const CALENDAR_LOCATION = `Zoom (ID ${ZOOM_ID})`;
-const CALENDAR_START_UTC = '20260305T030000Z'; // Example: Wednesday 7:00 PM Pacific
-const CALENDAR_END_UTC = '20260305T043000Z'; // Example: 8:30 PM Pacific
-const CALENDAR_RRULE = 'RRULE:FREQ=WEEKLY;BYDAY=WE';
+const CALENDAR_START_UTC = safeContent.calendarStartUtc;
+const CALENDAR_END_UTC = safeContent.calendarEndUtc;
+const CALENDAR_RRULE = safeContent.calendarRrule;
 
 const GOOGLE_CAL_LINK =
   `https://calendar.google.com/calendar/render?action=TEMPLATE` +
@@ -98,6 +156,20 @@ function App() {
     return () => window.clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    const theme = safeContent.theme;
+    root.style.setProperty('--bg', theme.bg);
+    root.style.setProperty('--paper', theme.paper);
+    root.style.setProperty('--card', theme.card);
+    root.style.setProperty('--card-2', theme.card2);
+    root.style.setProperty('--text', theme.text);
+    root.style.setProperty('--muted', theme.muted);
+    root.style.setProperty('--accent', theme.accent);
+    root.style.setProperty('--accent-2', theme.accent2);
+    root.style.setProperty('--border', theme.border);
+  }, []);
+
   const laNow = useMemo(() => getLosAngelesParts(now), [now]);
   const countdown = useMemo(() => getNextMeetingCountdown(laNow, now), [laNow, now]);
 
@@ -127,7 +199,7 @@ function App() {
   return (
     <div className="page">
       <header className="hero" role="banner">
-        <img className="hero-image" src="/banner.jpg" alt="Workshop banner" />
+        <img className="hero-image" src={HERO_IMAGE} alt="Workshop banner" />
         <div className="hero-overlay">
           <div className="hero-content">
             <div className="hero-glass">
