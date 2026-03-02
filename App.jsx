@@ -139,7 +139,7 @@ function App() {
         <div className="hero-overlay">
           <div className="hero-content">
             <div className="hero-glass">
-              <p className="eyebrow">Weekly AA Workshop</p>
+              <p className="eyebrow">WTues & Thurs Night Meeting</p>
               <h1>{WORKSHOP_NAME}</h1>
               <p className="subtitle">{HOST_LINE} · {SCHEDULE_LINE}</p>
 
