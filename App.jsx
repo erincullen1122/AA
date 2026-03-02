@@ -16,6 +16,7 @@ const defaults = {
   zoomId: '81858307289',
   zoomPasscode: '411108',
   workbookLink: 'https://www.aa.org/daily-reflections',
+  dailyReflectionsUrl: 'https://www.aa.org/daily-reflections',
   calendarStartUtc: '20260305T030000Z',
   calendarEndUtc: '20260305T043000Z',
   calendarRrule: 'RRULE:FREQ=WEEKLY;BYDAY=WE',
@@ -55,7 +56,14 @@ const START_DATE_LINE = safeContent.startDateLine;
 const COMMITMENT_LINE = safeContent.commitmentLine;
 
 const TIMEZONE = safeContent.timezone;
-const MEETING_WEEKDAY = Number(safeContent.meetingWeekday);
+const MEETING_WEEKDAYS = (() => {
+  const raw = safeContent.meetingWeekday;
+  const values = Array.isArray(raw) ? raw : [raw];
+
+  return values
+    .map((value) => Number(value))
+    .filter((value) => Number.isInteger(value) && value >= 0 && value <= 6);
+})();
 const MEETING_HOUR = Number(safeContent.meetingHour);
 const MEETING_MINUTE = Number(safeContent.meetingMinute);
 
@@ -66,11 +74,25 @@ const CONTACT_2_NAME = safeContent.contact2Name;
 const CONTACT_2_PHONE_DISPLAY = safeContent.contact2PhoneDisplay;
 const CONTACT_2_PHONE_TEL = safeContent.contact2PhoneTel;
 const HERO_IMAGE = safeContent.heroImage;
+const HERO_IMAGE_VERSION = import.meta.env.VITE_BUILD_TS ?? safeContent.heroImageVersion ?? '1';
+const HERO_IMAGE_URL = `${HERO_IMAGE}${String(HERO_IMAGE).includes('?') ? '&' : '?'}v=${encodeURIComponent(String(HERO_IMAGE_VERSION))}`;
 
 const ZOOM_ID = safeContent.zoomId;
 const ZOOM_PASSCODE = safeContent.zoomPasscode;
 const ZOOM_LINK = `https://us02web.zoom.us/j/${ZOOM_ID}?pwd=${encodeURIComponent(ZOOM_PASSCODE)}`;
 const WORKBOOK_LINK = safeContent.workbookLink;
+const DAILY_REFLECTIONS_URL = safeContent.dailyReflectionsUrl;
+const DAILY_REFLECTIONS_EMBED_HTML = (safeContent.dailyReflectionsEmbedHtml ?? '').trim();
+
+function formatMeetingTime(hour24, minute) {
+  const safeHour = Number.isFinite(hour24) ? Math.max(0, Math.min(23, hour24)) : 18;
+  const safeMinute = Number.isFinite(minute) ? Math.max(0, Math.min(59, minute)) : 30;
+  const suffix = safeHour >= 12 ? 'PM' : 'AM';
+  const hour12 = safeHour % 12 === 0 ? 12 : safeHour % 12;
+  return `${hour12}:${String(safeMinute).padStart(2, '0')} ${suffix}`;
+}
+
+const DISPLAY_TIME = formatMeetingTime(MEETING_HOUR, MEETING_MINUTE);
 
 
 
@@ -130,13 +152,24 @@ function getNextMeetingCountdown(laNow, nowDate) {
   const nowSecondsInDay = laNow.hour * 3600 + laNow.minute * 60 + laNow.second;
   const meetingSecondsInDay = MEETING_HOUR * 3600 + MEETING_MINUTE * 60;
 
-  let daysUntil = (MEETING_WEEKDAY - laNow.weekday + 7) % 7;
-  if (daysUntil === 0 && nowSecondsInDay >= meetingSecondsInDay) {
-    daysUntil = 7;
+  const weekdays = MEETING_WEEKDAYS.length ? MEETING_WEEKDAYS : [2];
+  let minTotalSeconds = Number.POSITIVE_INFINITY;
+
+  for (const meetingWeekday of weekdays) {
+    let daysUntil = (meetingWeekday - laNow.weekday + 7) % 7;
+    if (daysUntil === 0 && nowSecondsInDay >= meetingSecondsInDay) {
+      daysUntil = 7;
+    }
+
+    let totalSeconds = daysUntil * 86400 + (meetingSecondsInDay - nowSecondsInDay);
+    if (totalSeconds < 0) totalSeconds += 7 * 86400;
+
+    if (totalSeconds < minTotalSeconds) {
+      minTotalSeconds = totalSeconds;
+    }
   }
 
-  let totalSeconds = daysUntil * 86400 + (meetingSecondsInDay - nowSecondsInDay);
-  if (totalSeconds < 0) totalSeconds += 7 * 86400;
+  const totalSeconds = minTotalSeconds;
 
   const days = Math.floor(totalSeconds / 86400);
   const hours = Math.floor((totalSeconds % 86400) / 3600);
@@ -159,6 +192,7 @@ function App() {
   useEffect(() => {
     const root = document.documentElement;
     const theme = safeContent.theme;
+    root.style.setProperty('--hero-image-url', `url('${HERO_IMAGE_URL}')`);
     root.style.setProperty('--bg', theme.bg);
     root.style.setProperty('--paper', theme.paper);
     root.style.setProperty('--card', theme.card);
@@ -175,7 +209,7 @@ function App() {
 
   const nextMeetingLabel = `${countdown.nextDate.weekdayName}, ${String(countdown.nextDate.month).padStart(2, '0')}/${String(
     countdown.nextDate.day
-  ).padStart(2, '0')}/${countdown.nextDate.year} at 7:00 PM Pacific`;
+  ).padStart(2, '0')}/${countdown.nextDate.year} at ${DISPLAY_TIME} Pacific`;
 
   function copyZoomInfo() {
     const text = `${WORKSHOP_NAME}\n${SCHEDULE_LINE}\nZoom ID: ${ZOOM_ID}\nPasscode: ${ZOOM_PASSCODE}\nJoin: ${ZOOM_LINK}`;
@@ -199,7 +233,7 @@ function App() {
   return (
     <div className="page">
       <header className="hero" role="banner">
-        <img className="hero-image" src={HERO_IMAGE} alt="Workshop banner" />
+        <img className="hero-image" src={HERO_IMAGE_URL} alt="Workshop banner" />
         <div className="hero-overlay">
           <div className="hero-content">
             <div className="hero-glass">
@@ -239,7 +273,7 @@ function App() {
               </div>
 
               <div className="countdown" role="status" aria-live="polite">
-                <p className="countdown-title">Next workshop</p>
+                <p className="countdown-title">next Meeting</p>
                 <p className="countdown-time">
                   {countdown.days}d {String(countdown.hours).padStart(2, '0')}h {String(countdown.minutes).padStart(2, '0')}m
                 </p>
@@ -301,6 +335,25 @@ function App() {
             <li>Writing/reflection assignment #1</li>
             <li>Optional prompt or journaling exercise</li>
           </ul>
+        </section>
+
+        <section className="card week-update">
+          <h2>Daily Reflection</h2>
+          {DAILY_REFLECTIONS_EMBED_HTML ? (
+            <div dangerouslySetInnerHTML={{ __html: DAILY_REFLECTIONS_EMBED_HTML }} />
+          ) : (
+            <>
+              <p>
+                Paste embed code into <strong>dailyReflectionsEmbedHtml</strong> in content.js,
+                or open today&apos;s reflection directly:
+              </p>
+              <p style={{ marginTop: '0.65rem' }}>
+                <a href={DAILY_REFLECTIONS_URL} target="_blank" rel="noreferrer">
+                  Open AA Daily Reflections
+                </a>
+              </p>
+            </>
+          )}
         </section>
       </main>
     </div>

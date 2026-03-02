@@ -17,6 +17,10 @@ export const content = {
   zoomId: '81858307289',
   zoomPasscode: '411108',
   workbookLink: 'https://www.aa.org/daily-reflections',
+  dailyReflectionsUrl: 'https://www.aa.org/daily-reflections',
+  // Paste iframe/embed HTML here when available.
+  // Example: '<iframe src="https://example.com" height="600" loading="lazy"></iframe>'
+  dailyReflectionsEmbedHtml: '',
 
   // ===== CALENDAR EXPORT =====
   calendarStartUtc: '20260305T030000Z',
@@ -34,6 +38,8 @@ export const content = {
   // ===== IMAGE =====
   // Put your image in /public and point to it like '/my-banner.jpg'
   heroImage: '/banner.jpg',
+  // Optional manual override. Usually not needed because deploy now auto-busts cache.
+  heroImageVersion: '2026-03-02-4',
 
   // ===== COLORS (OPTIONAL) =====
   // Any value left blank will use existing defaults.

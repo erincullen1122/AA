@@ -21,6 +21,7 @@ Key fields:
 - `commitmentLine`
 - `zoomId`, `zoomPasscode`
 - `workbookLink`
+- `dailyReflectionsEmbedHtml` (paste iframe/embed code here)
 - contact names + phone numbers
 - `heroImage` (banner image path)
 - `theme` (site color values)
@@ -44,12 +45,15 @@ Avoid editing `App.jsx` unless you are changing layout/logic.
 - Change hero image: put image in `public/` and set `heroImage` in `content.js`
 - Change colors: edit the `theme` object in `content.js`
 
+Banner updates are cache-busted automatically on every `build`/`deploy`, so you usually do not need to change `heroImageVersion` manually.
+
 ## Deploy (Vercel)
 
 ```bash
-npx vercel
-npx vercel --prod
+npm run deploy:prod
 ```
+
+`deploy:prod` always runs a build check first, so broken edits are caught before publishing.
 
 ## Notes
 

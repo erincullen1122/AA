@@ -1,5 +1,6 @@
 :root {
   color-scheme: dark;
+  --hero-image-url: url('/banner.jpg');
   --bg: #20293a;
   --paper: #efe5d2;
   --card: rgba(38, 53, 80, 0.78);
@@ -13,6 +14,12 @@
 
 * {
   box-sizing: border-box;
+}
+
+iframe {
+  width: 100%;
+  max-width: 100%;
+  display: block;
 }
 
 body {
@@ -43,7 +50,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: url('/banner.jpg') center / cover no-repeat;
+  background: var(--hero-image-url) center / cover no-repeat;
   filter: blur(9px) saturate(95%);
   transform: scale(1.04);
   opacity: 0.48;
@@ -235,6 +242,9 @@ body {
 }
 
 .card {
+  width: min(780px, 100%);
+  margin-left: 0;
+  margin-right: 0;
   background: linear-gradient(180deg, var(--card), var(--card-2));
   border: 1px solid var(--border);
   border-radius: 18px;
