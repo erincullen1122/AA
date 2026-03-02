@@ -1,7 +1,10 @@
 export const content = {
   // ===== TEXT YOU'LL CHANGE MOST OFTEN =====
   workshopName: 'Huggers Womens AA Meeting',
+  siteTitle: 'AA Huggers Womens Meeting',
+  siteDescription: 'Reusable template for weekly AA workshop landing pages with Zoom info, countdown, and assignments.',
   hostLine: 'Join us!',
+  eyebrowLine: 'Tuesday & Thursday',
   scheduleLine: 'Every Tuesday & Thursday 6:30 PM - 7:30 PM Pacific',
   startDateLine: 'Ongoing Weekly',
   commitmentLine: 'Join us for a weekly meeting to share our experience, strength, and hope',
@@ -17,6 +20,12 @@ export const content = {
   zoomPasscode: '411108',
   workbookLink: 'https://www.aa.org/daily-reflections',
   dailyReflectionsUrl: 'https://www.aa.org/daily-reflections',
+  joinZoomLabel: 'Join Zoom',
+  copyZoomLabel: 'Copy Zoom Info',
+  copiedZoomLabel: 'Copied!',
+  addToCalendarLabel: 'Add to Calendar',
+  dailyReflectionsLabel: 'Daily Reflections',
+  heroImageAlt: 'Workshop banner',
   // Paste iframe/embed HTML here when available.
   // Example: '<iframe src="https://example.com" height="600" loading="lazy"></iframe>'
   dailyReflectionsEmbedHtml: '',
@@ -25,13 +34,16 @@ export const content = {
   calendarStartUtc: '20260305T030000Z',
   calendarEndUtc: '20260305T043000Z',
   calendarRrule: 'RRULE:FREQ=WEEKLY;BYDAY=TU,TH',
+  calendarSummary: 'Huggers Womens AA Meeting',
+  calendarDescription: 'Join us!\nZoom ID: 81858307289\nPasscode: 411108',
+  calendarLocation: 'Zoom (ID 81858307289)',
 
   // ===== CONTACTS =====
 
 
   // ===== IMAGE =====
   // Put your image in /public and point to it like '/my-banner.jpg'
-  heroImage: '/banner.jpg',
+  heroImage: '/mybanner.jpg',
   // Optional manual override. Usually not needed because deploy now auto-busts cache.
   heroImageVersion: '2026-03-02-4',
 

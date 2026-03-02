@@ -377,20 +377,6 @@ function App() {
         </section>
 
         <section className="card week-update">
-          <h2>Weekly Update</h2>
-          <p>
-            Share what your group covered this week and what members should do before the next meeting.
-          </p>
-
-          <h3>Before Next Week (Template)</h3>
-          <ul>
-            <li>Reading assignment #1</li>
-            <li>Writing/reflection assignment #1</li>
-            <li>Optional prompt or journaling exercise</li>
-          </ul>
-        </section>
-
-        <section className="card week-update">
           <h2>Daily Reflection</h2>
           {DAILY_REFLECTIONS_EMBED_HTML ? (
             <div className="daily-reflection-layout">
