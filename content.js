@@ -18,7 +18,6 @@ export const content = {
   // ===== LINKS =====
   zoomId: '81858307289',
   zoomPasscode: '411108',
-  workbookLink: 'https://www.aa.org/daily-reflections',
   dailyReflectionsUrl: 'https://www.aa.org/daily-reflections',
   joinZoomLabel: 'Join Zoom',
   copyZoomLabel: 'Copy Zoom Info',

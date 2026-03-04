@@ -15,7 +15,6 @@ const defaults = {
   meetingMinute: 30,
   zoomId: '81858307289',
   zoomPasscode: '411108',
-  workbookLink: 'https://www.aa.org/daily-reflections',
   dailyReflectionsUrl: 'https://www.aa.org/daily-reflections',
   dailyReflectionImagePrimary: '/flyer.jpg',
   dailyReflectionImageSecondary: '/social-preview.jpg',
@@ -82,7 +81,6 @@ const HERO_IMAGE_URL = `${HERO_IMAGE}${String(HERO_IMAGE).includes('?') ? '&' : 
 const ZOOM_ID = safeContent.zoomId;
 const ZOOM_PASSCODE = safeContent.zoomPasscode;
 const ZOOM_LINK = `https://us02web.zoom.us/j/${ZOOM_ID}?pwd=${encodeURIComponent(ZOOM_PASSCODE)}`;
-const WORKBOOK_LINK = safeContent.workbookLink;
 const DAILY_REFLECTIONS_URL = safeContent.dailyReflectionsUrl;
 const DAILY_REFLECTIONS_EMBED_HTML = (safeContent.dailyReflectionsEmbedHtml ?? '').trim();
 const DAILY_REFLECTION_IMAGE_PRIMARY = safeContent.dailyReflectionImagePrimary;
@@ -318,9 +316,6 @@ function App() {
                     </a>
                   </div>
                 </details>
-                <a className="btn btn-ghost" href={WORKBOOK_LINK} target="_blank" rel="noreferrer">
-                  Daily Reflections
-                </a>
               </div>
 
               <div className="countdown" role="status" aria-live="polite">

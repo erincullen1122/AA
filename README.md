@@ -20,7 +20,6 @@ Key fields:
 - `startDateLine`
 - `commitmentLine`
 - `zoomId`, `zoomPasscode`
-- `workbookLink`
 - `dailyReflectionsEmbedHtml` (paste iframe/embed code here)
 - contact names + phone numbers
 - `heroImage` (banner image path)
