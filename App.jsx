@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { content } from './content';
+import * as contentModule from './content';
 
 
 
@@ -41,12 +41,18 @@ const defaults = {
   },
 };
 
+const sourceContent =
+  contentModule.content ??
+  contentModule.default ??
+  contentModule.npmcontent ??
+  {};
+
 const safeContent = {
   ...defaults,
-  ...(content ?? {}),
+  ...sourceContent,
   theme: {
     ...defaults.theme,
-    ...((content ?? {}).theme ?? {}),
+    ...(sourceContent.theme ?? {}),
   },
 };
 

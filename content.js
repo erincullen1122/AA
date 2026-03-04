@@ -60,3 +60,6 @@ export const content = {
     border: 'rgba(233, 219, 193, 0.26)',
   },
 };
+
+export const npmcontent = content;
+export default content;
