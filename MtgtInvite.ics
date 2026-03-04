@@ -44,7 +44,7 @@ X-MICROSOFT-DONOTFORWARDMEETING:FALSE
 X-MICROSOFT-DISALLOW-COUNTER:FALSE
 X-MICROSOFT-LOCATIONDISPLAYNAME:ttps://us02web.zoom.us/j/81858307289?pwd=41
  1108
-X-MICROSOFT-LOCATIONS:[{"DisplayName":"ttps://us02web.zoom.us/j/81858307289
+X-MICROSOFT-LOCATIONS:[{"DisplayName":"https://us02web.zoom.us/j/81858307289
  ?pwd=411108"\,"LocationAnnotation":""\,"LocationUri":""\,"LocationStreet":
  ""\,"LocationCity":""\,"LocationState":""\,"LocationCountry":""\,"Location
  PostalCode":""\,"LocationFullAddress":""}]
@@ -55,4 +55,5 @@ ACTION:DISPLAY
 END:VALARM
 END:VEVENT
 END:VCALENDAR
+
 
