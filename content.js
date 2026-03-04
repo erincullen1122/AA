@@ -34,7 +34,7 @@ export const npmcontent = {
   calendarEndUtc: '20260305T043000Z',
   calendarRrule: 'RRULE:FREQ=WEEKLY;BYDAY=TU,TH',
   calendarSummary: 'Huggers Womens AA Meeting',
-  calendarDescription: 'Join us!\nZoom ID: 81858307289\nPasscode: 411108',
+  calendarDescription: '\nZoom ID: 81858307289\nPasscode: 411108',
   calendarLocation: 'Zoom (ID 81858307289)',
 
   // ===== CONTACTS =====
