@@ -344,7 +344,7 @@ function App() {
               <p className="detail-value">{START_DATE_LINE}</p>
             </article>
             <article className="detail-item">
-              <p className="detail-label">Commitment</p>
+              <p className="detail-label">Please Join Us!</p>
               <p className="detail-value">{COMMITMENT_LINE}</p>
             </article>
             <article className="detail-item">

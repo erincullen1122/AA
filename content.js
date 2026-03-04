@@ -3,9 +3,9 @@ export const content = {
   workshopName: "Huggers Women's AA Meeting",
   siteTitle: "AA Huggers Women's Meeting",
   siteDescription: 'Reusable template for weekly AA workshop landing pages with Zoom info, countdown, and assignments.',
-  hostLine: 'Join us!',
-  eyebrowLine: 'Tuesday & Thursday',
-  scheduleLine: 'Every Tuesday & Thursday 6:30PM - 7:30PM PT',
+
+  eyebrowLine: 'Tuesdays & Thursdays',
+  scheduleLine: 'Tuesdays & Thursdays 6:30PM - 7:30PM PT',
   startDateLine: 'Ongoing Weekly',
   commitmentLine: 'Join us! We share our experience, strength, and hope with each other',
   // ===== TIME SETTINGS =====
