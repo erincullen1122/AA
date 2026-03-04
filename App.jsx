@@ -368,12 +368,7 @@ function App() {
             </div>
           ) : null}
 
-          <div className="detail-section">
-            <h3>Workbook</h3>
-            <a href={WORKBOOK_LINK} target="_blank" rel="noreferrer">
-              Download workbook
-            </a>
-          </div>
+    
         </section>
 
         <section className="card week-update">
