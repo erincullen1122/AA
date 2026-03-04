@@ -24,9 +24,9 @@ timestamp="$(date '+%Y-%m-%d %H:%M')"
 git commit -m "checkpoint: ${timestamp}"
 
 if git rev-parse --abbrev-ref --symbolic-full-name "@{u}" >/dev/null 2>&1; then
-  git push
+  AA_SKIP_AUTO_DEPLOY=1 git push
 else
-  git push -u origin "${branch_name}"
+  AA_SKIP_AUTO_DEPLOY=1 git push -u origin "${branch_name}"
 fi
 
 echo "Checkpoint pushed on ${branch_name}."
