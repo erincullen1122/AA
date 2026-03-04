@@ -1,4 +1,4 @@
-export const content = {
+export const npmcontent = {
   // ===== TEXT YOU'LL CHANGE MOST OFTEN =====
   workshopName: "Huggers Women's AA Meeting",
   siteTitle: "AA Huggers Women's Meeting",
