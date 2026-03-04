@@ -381,7 +381,7 @@ function App() {
               </div>
               <div className="daily-reflection-media-grid" aria-label="Reflection image holders">
                 <figure className="daily-reflection-frame">
-                  <img src="AA1.jpg" alt="Daily reflection image holder 1" loading="lazy" />
+                  <img src="/AA1.jpg" alt="Daily reflection image holder 1" loading="lazy" />
                 </figure>
                 <figure className="daily-reflection-frame">
                   <img src="AA2.png" alt="Daily reflection image holder 2" loading="lazy" />
