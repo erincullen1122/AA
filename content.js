@@ -7,7 +7,7 @@ export const content = {
   eyebrowLine: 'Tuesdays & Thursdays',
   scheduleLine: 'Tuesdays & Thursdays 6:30PM - 7:30PM PT',
   startDateLine: 'Ongoing Weekly',
-  commitmentLine: 'Join us! We share our experience, strength, and hope with each other',
+  commitmentLine: 'Women share their experience, strength, and hope. ',
   // ===== TIME SETTINGS =====
   // meetingWeekday: Sunday=0, Monday=1, Tuesday=2 ... Saturday=6
   timezone: 'America/Los_Angeles',
