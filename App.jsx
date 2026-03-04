@@ -27,7 +27,7 @@ const defaults = {
   contact2Name: '',
   contact2PhoneDisplay: '',
   contact2PhoneTel: '',
-  heroImage: '/banner.jpg',
+  heroImage: '/newbanner.jpg',
   theme: {
     bg: '#20293a',
     paper: '#efe5d2',
