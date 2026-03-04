@@ -19,7 +19,7 @@ echo "${deploy_output}"
 deploy_url="$(echo "${deploy_output}" | grep -Eo 'https://[^ ]+\.vercel\.app' | tail -n 1 || true)"
 
 if [[ -n "${deploy_url}" ]]; then
-  npx vercel alias set "${deploy_url}" huggers.womensaa.vercel.app --scope "${scope}"
+  npx vercel alias set "${deploy_url}" huggerswomenaa.vercel.app --scope "${scope}"
   echo "✅ Production deploy completed: ${deploy_url}"
 else
   echo "⚠️ Deploy completed, but could not parse deployment URL from output."
