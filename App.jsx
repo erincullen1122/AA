@@ -4,9 +4,9 @@ import { content } from './content';
 
 
 const defaults = {
-  workshopName: 'Huggers Womens AA Meeting',
+  workshopName: "Huggers Women's AA Meeting",
   hostLine: 'Join us!',
-  scheduleLine: 'Every Tuesday & Thursday at 6:30 PM Pacific',
+  scheduleLine: 'Tuesdays & Thursdays 6:30PM - 7:30PM PT',
   startDateLine: 'Set your start date',
   commitmentLine: 'Open-ended',
   timezone: 'America/Los_Angeles',
