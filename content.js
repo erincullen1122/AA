@@ -41,7 +41,7 @@ export const content = {
 
 
   // ===== IMAGE =====
-  // Put your image in /public and point to it like '/my-banner.jpg'
+  // Put your image in /public and point to it like '/newbanner.jpg'
   heroImage: '/newbanner.jpg',
   // Optional manual override. Usually not needed because deploy now auto-busts cache.
   heroImageVersion: '2026-03-02-4',

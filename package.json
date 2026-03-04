@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "sync:banner": "mkdir -p public && [ -f banner.jpg ] && cp -f banner.jpg public/banner.jpg; [ -f mybanner.jpg ] && cp -f mybanner.jpg public/mybanner.jpg",
+    "sync:banner": "mkdir -p public",
     "checkpoint": "bash scripts/checkpoint.sh",
     "verify:sync": "bash scripts/verify-sync.sh",
     "checkpoint:watch": "bash scripts/checkpoint-watch.sh",
