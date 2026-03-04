@@ -393,8 +393,12 @@ function App() {
           ) : reflectionData?.fullText ? (
             <div className="daily-reflection-layout">
               <div className="daily-reflection-box daily-reflection-text">
-                {reflectionData?.title ? <h3>{reflectionData.title}</h3> : null}
-                {reflectionData?.dateLabel ? <p className="daily-reflection-date">{reflectionData.dateLabel}</p> : null}
+                {reflectionData?.title || reflectionData?.dateLabel ? (
+                  <div className="daily-reflection-meta">
+                    {reflectionData?.title ? <h3>{reflectionData.title}</h3> : null}
+                    {reflectionData?.dateLabel ? <p className="daily-reflection-date">{reflectionData.dateLabel}</p> : null}
+                  </div>
+                ) : null}
                 <div className="daily-reflection-body">
                   {reflectionData.fullText
                     .split('\n\n')
@@ -436,6 +440,7 @@ function App() {
               </p>
             </>
           )}
+          <p className="daily-reflection-copyright">© Alcoholics Anonymous World Services, Inc.</p>
         </section>
       </main>
     </div>
