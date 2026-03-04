@@ -317,7 +317,7 @@ function App() {
                     <a href={GOOGLE_CAL_LINK} target="_blank" rel="noreferrer">
                       Google Calendar
                     </a>
-                    <a href="/MtgInvite.ics" target="_blank" rel="noreferrer">
+                    <a href="public/MtgInvite.ics" target="_blank" rel="noreferrer">
                       Apple / Other
                     </a>
                   </div>
