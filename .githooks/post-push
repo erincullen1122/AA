@@ -23,5 +23,5 @@ echo "${deploy_output}"
 deploy_url="$(echo "${deploy_output}" | grep -Eo 'https://[^ ]+\.vercel\.app' | tail -n 1 || true)"
 
 if [[ -n "${deploy_url}" ]]; then
-  npx vercel alias set "${deploy_url}" huggerswomenaa.vercel.app --scope anniehall16-1319s-projects
+  npx vercel alias set "${deploy_url}" huggers.womensaa.vercel.app --scope anniehall16-1319s-projects
 fi
