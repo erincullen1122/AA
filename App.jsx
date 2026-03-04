@@ -384,7 +384,7 @@ function App() {
                   <img src="/AA1.jpg" alt="Daily reflection image holder 1" loading="lazy" />
                 </figure>
                 <figure className="daily-reflection-frame">
-                  <img src="AA2.png" alt="Daily reflection image holder 2" loading="lazy" />
+                  <img src="/AA2.png" alt="Daily reflection image holder 2" loading="lazy" />
                 </figure>
               </div>
             </div>
